@@ -1,6 +1,6 @@
-# easy-elasticsearch
+# easy_elasticsearch
 
-easy-elasticsearch is a web server that allows you to add JSON data easily to the Elasticsearch datastore and check the contents of the database with search.
+easy_elasticsearch is a web server that allows you to add JSON data easily to the Elasticsearch datastore and check the contents of the database with search.
 
 ### Installation
 

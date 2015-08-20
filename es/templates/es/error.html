@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block primary %}
+<div class="container">
+    <h4>Error!</h4>
+    <div>
+        {% if error %}
+            <p>{{error}}</p>
+        {% endif %}
+    </div>
+    <input type="button" value="Go back" class="btn btn-sm btn-danger" onclick="history.back(-1)"/>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

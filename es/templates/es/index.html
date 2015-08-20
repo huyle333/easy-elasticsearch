@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block primary %}
+<div class="container">
+    <form action="/search/\?" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-sm btn-info" type="submit" value="Search"/>
+    </form> 
+    <br>
+    <div class="row">
+        {% if sources %}
+        <div class="col-md-6">
+            <h5>Filename</h5>
+            <ul class="list-unstyled">
+                {% for source, buildnumber, planname, plankey in sources %}
+                    <li><a href="/open{{source}}">{{source}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h5>Project</h5>
+            <ul class="list-unstyled"> 
+                {% for source, buildnumber, planname, plankey in sources %}
+                    {% if not planname %}
+                        <li style="visibility:hidden">-</li>
+                    {% else %}
+                    <li><a target="_blank" href="https://bamboo.nestlabs.com/browse/{{plankey}}-{{buildnumber}}">{{planname}} {{buildnumber}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <h5>Metadata</h5>
+            <ul class="list-unstyled">
+                {% for directoryFlag, source in results %}
+                    {% if directoryFlag != True %}
+                        <li><a href="/addmetadata{{source.0}}">Add metadata</a></li>
+                    {% else %}
+                        <li>Directory</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
+</html>
